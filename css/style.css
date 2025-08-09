@@ -225,20 +225,7 @@ h1, h2, h3, h4, h5, h6 {
     font-size: 1.3rem;
 }
 
-.skills-overview {
-    animation: fadeInUp 1s ease-out 0.4s both;
-}
 
-.skills-overview h6 {
-    color: #fff;
-    font-weight: var(--font-weight-bold);
-    margin-bottom: 1.5rem;
-}
-
-.text-light-secondary {
-    color: rgba(255, 255, 255, 0.7) !important;
-    font-size: 0.9rem;
-}
 
 /* ==========================================
    Buttons
@@ -328,11 +315,66 @@ section {
 /* ==========================================
    About Section
    ========================================== */
+#about {
+    animation: none !important;
+}
+
+#about .card {
+    animation: fadeInUp 0.8s ease-out 0.2s both;
+}
+
 #about .card-text {
     font-size: 1.1rem;
     line-height: 1.8;
     color: #1f2937;
     margin-bottom: 1.5rem;
+}
+
+/* ==========================================
+   Skills Section
+   ========================================== */
+#skills {
+    background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+}
+
+.skill-category {
+    margin-bottom: 1.5rem;
+    animation: fadeInUp 0.6s ease-out both;
+}
+
+.skill-category:nth-child(1) { animation-delay: 0.1s; }
+.skill-category:nth-child(2) { animation-delay: 0.2s; }
+.skill-category:nth-child(3) { animation-delay: 0.3s; }
+.skill-category:nth-child(4) { animation-delay: 0.4s; }
+.skill-category:nth-child(5) { animation-delay: 0.5s; }
+.skill-category:nth-child(6) { animation-delay: 0.6s; }
+
+.skill-category-title {
+    color: #1f2937;
+    font-weight: var(--font-weight-bold);
+    margin-bottom: 1rem;
+    font-size: 1.1rem;
+}
+
+.skill-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+}
+
+.skill-tags .badge {
+    font-size: 0.85rem;
+    padding: 0.6rem 1rem;
+    border-radius: 25px;
+    font-weight: var(--font-weight-medium);
+    transition: var(--transition-smooth);
+    background: var(--gradient-primary) !important;
+    border: none;
+}
+
+.skill-tags .badge:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 15px rgba(37, 99, 235, 0.3);
 }
 
 /* ==========================================

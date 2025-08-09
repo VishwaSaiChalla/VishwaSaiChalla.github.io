@@ -94,7 +94,7 @@ document.addEventListener('DOMContentLoaded', function() {
     }, observerOptions);
 
     // Add fade-in-up class to elements that should animate
-    const animateElements = document.querySelectorAll('.card, .experience-item, .project-item, .certification-item, .contact-item');
+    const animateElements = document.querySelectorAll('.card, .experience-item, .project-item, .certification-item, .contact-item, .skill-category');
     animateElements.forEach(el => {
         el.classList.add('fade-in-up');
         observer.observe(el);
