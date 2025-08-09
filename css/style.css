@@ -419,6 +419,42 @@ section {
     line-height: 1.8;
     color: #1f2937;
     margin-bottom: 1.5rem;
+    transition: color 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+/* Color transition states for About Me section */
+#about.in-dark-zone .card-text {
+    color: #2563eb !important;
+}
+
+#about.in-dark-zone .card-title,
+#about.in-dark-zone .card-subtitle {
+    color: #3b82f6 !important;
+    transition: color 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+#about .section-title {
+    transition: color 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+#about.in-dark-zone .section-title {
+    color: #2563eb !important;
+}
+
+/* Enhanced card styling when in dark zone */
+#about.in-dark-zone .card {
+    background: rgba(255, 255, 255, 0.95) !important;
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(37, 99, 235, 0.3) !important;
+    box-shadow: 0 10px 40px rgba(37, 99, 235, 0.2) !important;
+}
+
+/* Gradient text effect for emphasis */
+#about.in-dark-zone .card-text strong {
+    background: var(--gradient-primary);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
 }
 
 /* ==========================================

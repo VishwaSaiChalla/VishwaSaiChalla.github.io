@@ -116,6 +116,49 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 
     // ==========================================
+    // About Me Color Transition Effect
+    // ==========================================
+    const aboutSection = document.querySelector('#about');
+    const heroSection = document.querySelector('.hero-section');
+    
+    if (aboutSection && heroSection) {
+        const colorTransitionObserver = new IntersectionObserver(function(entries) {
+            entries.forEach(entry => {
+                const aboutRect = aboutSection.getBoundingClientRect();
+                const heroRect = heroSection.getBoundingClientRect();
+                
+                // Check if About Me section overlaps with hero section (dark background)
+                const isInDarkZone = aboutRect.top < heroRect.bottom && aboutRect.bottom > heroRect.top;
+                
+                if (isInDarkZone) {
+                    aboutSection.classList.add('in-dark-zone');
+                } else {
+                    aboutSection.classList.remove('in-dark-zone');
+                }
+            });
+        }, {
+            threshold: [0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1],
+            rootMargin: '0px'
+        });
+        
+        colorTransitionObserver.observe(aboutSection);
+        
+        // Also trigger on scroll for more responsive updates
+        window.addEventListener('scroll', function() {
+            const aboutRect = aboutSection.getBoundingClientRect();
+            const heroRect = heroSection.getBoundingClientRect();
+            
+            const isInDarkZone = aboutRect.top < heroRect.bottom && aboutRect.bottom > heroRect.top;
+            
+            if (isInDarkZone) {
+                aboutSection.classList.add('in-dark-zone');
+            } else {
+                aboutSection.classList.remove('in-dark-zone');
+            }
+        });
+    }
+
+    // ==========================================
     // Enhanced Hero Animations
     // ==========================================
     
