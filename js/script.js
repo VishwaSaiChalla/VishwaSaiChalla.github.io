@@ -94,30 +94,56 @@ document.addEventListener('DOMContentLoaded', function() {
     }, observerOptions);
 
     // Add fade-in-up class to elements that should animate (excluding About Me card)
-    const animateElements = document.querySelectorAll('.card:not(#about .card), .experience-item, .project-item, .certification-item, .contact-item, .skill-category');
+    const animateElements = document.querySelectorAll('.card:not(#about .card), .experience-item, .project-item, .certification-item, .contact-item');
     animateElements.forEach(el => {
         el.classList.add('fade-in-up');
         observer.observe(el);
     });
+    
+    // Separate observer for skill categories with enhanced animations
+    const skillObserver = new IntersectionObserver(function(entries) {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.style.animationPlayState = 'running';
+            }
+        });
+    }, { threshold: 0.1 });
+    
+    const skillCategories = document.querySelectorAll('.skill-category');
+    skillCategories.forEach(el => {
+        el.style.animationPlayState = 'paused';
+        skillObserver.observe(el);
+    });
 
     // ==========================================
-    // Typing Animation for Hero Section
+    // Enhanced Hero Animations
     // ==========================================
+    
+    // Trigger name underline animation
+    setTimeout(() => {
+        const nameHeading = document.querySelector('.profile-text h1');
+        if (nameHeading) {
+            nameHeading.classList.add('animate');
+        }
+    }, 2000);
+    
+    // Enhanced typing animation with better timing
     const typingText = document.querySelector('.lead');
     if (typingText) {
         const originalText = typingText.textContent;
         typingText.textContent = '';
+        typingText.style.opacity = '1'; // Ensure it's visible for typing
         
         let i = 0;
         function typeWriter() {
             if (i < originalText.length) {
                 typingText.textContent += originalText.charAt(i);
                 i++;
-                setTimeout(typeWriter, 50);
+                setTimeout(typeWriter, 30); // Faster typing
             }
         }
         
-        setTimeout(typeWriter, 1500);
+        setTimeout(typeWriter, 1200); // Start typing earlier
     }
 
     // ==========================================

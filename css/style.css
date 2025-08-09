@@ -129,7 +129,8 @@ h1, h2, h3, h4, h5, h6 {
 
 .navbar-nav .nav-link:hover {
     background: rgba(37, 99, 235, 0.2);
-    transform: translateY(-2px);
+    transform: translateY(-3px) scale(1.05);
+    border-radius: var(--btn-border-radius);
 }
 
 .navbar-nav .nav-link::before {
@@ -189,11 +190,12 @@ h1, h2, h3, h4, h5, h6 {
 
 /* Profile Picture Styling */
 .profile-intro {
-    animation: fadeInUp 1s ease-out 0.1s both;
+    animation: heroIntroSlide 1.2s cubic-bezier(0.25, 0.46, 0.45, 0.94) 0.3s both;
 }
 
 .profile-picture-container {
     position: relative;
+    overflow: hidden;
 }
 
 .profile-picture {
@@ -203,26 +205,64 @@ h1, h2, h3, h4, h5, h6 {
     object-fit: cover;
     border: 4px solid rgba(37, 99, 235, 0.8);
     box-shadow: 0 8px 32px rgba(37, 99, 235, 0.3);
-    transition: var(--transition-smooth);
-    animation: fadeInLeft 1s ease-out 0.3s both;
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    animation: profilePictureEntrance 1.5s cubic-bezier(0.68, -0.55, 0.265, 1.55) 0.5s both;
+    position: relative;
+}
+
+.profile-picture::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: linear-gradient(45deg, transparent, rgba(37, 99, 235, 0.1), transparent);
+    transform: rotate(45deg);
+    transition: all 0.6s ease;
+    opacity: 0;
 }
 
 .profile-picture:hover {
-    transform: scale(1.05);
+    transform: scale(1.08) rotate(2deg);
     border-color: #2563eb;
-    box-shadow: 0 12px 40px rgba(37, 99, 235, 0.4);
+    box-shadow: 0 20px 60px rgba(37, 99, 235, 0.5);
+}
+
+.profile-picture:hover::before {
+    opacity: 1;
+    transform: rotate(45deg) translate(50%, 50%);
 }
 
 .profile-text {
-    animation: fadeInRight 1s ease-out 0.3s both;
+    animation: profileTextSlide 1.2s cubic-bezier(0.25, 0.46, 0.45, 0.94) 0.7s both;
 }
 
 .profile-text h1 {
     margin-bottom: 0.5rem;
+    position: relative;
+    overflow: hidden;
+}
+
+.profile-text h1::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 3px;
+    background: var(--gradient-primary);
+    transition: width 1.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) 1.5s;
+}
+
+.profile-text h1.animate::after {
+    width: 100%;
 }
 
 .profile-text .lead {
     font-size: 1.3rem;
+    opacity: 0;
+    animation: leadTextFade 1s ease-out 1.2s both;
 }
 
 
@@ -234,11 +274,12 @@ h1, h2, h3, h4, h5, h6 {
     font-weight: var(--font-weight-medium);
     border-radius: var(--btn-border-radius);
     padding: 12px 30px;
-    transition: var(--transition-bounce);
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
     text-decoration: none;
     border: none;
     position: relative;
     overflow: hidden;
+    animation: buttonGlow 1s ease-out 1.5s both;
 }
 
 .btn::before {
@@ -248,12 +289,30 @@ h1, h2, h3, h4, h5, h6 {
     left: -100%;
     width: 100%;
     height: 100%;
-    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
-    transition: var(--transition-smooth);
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+    transition: all 0.6s ease;
+}
+
+.btn::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    transition: all 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
 
 .btn:hover::before {
     left: 100%;
+}
+
+.btn:hover::after {
+    width: 300px;
+    height: 300px;
 }
 
 .btn-primary {
@@ -287,14 +346,36 @@ h1, h2, h3, h4, h5, h6 {
     border: 1px solid rgba(37, 99, 235, 0.1);
     border-radius: var(--card-border-radius);
     box-shadow: var(--shadow-light);
-    transition: var(--transition-smooth);
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
     overflow: hidden;
     background: #ffffff;
+    position: relative;
+}
+
+.card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: var(--gradient-primary);
+    transform: scaleX(0);
+    transition: transform 0.4s ease;
 }
 
 .card:hover {
-    transform: translateY(-10px);
-    box-shadow: var(--shadow-heavy);
+    transform: translateY(-15px) scale(1.02);
+    box-shadow: 0 20px 50px rgba(37, 99, 235, 0.15);
+}
+
+.card:hover::before {
+    transform: scaleX(1);
+}
+
+/* Special animation for cards when they come into view */
+.card:not(#about .card) {
+    animation: cardFloatIn 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
 }
 
 .card-body {
@@ -317,10 +398,20 @@ section {
    ========================================== */
 #about {
     animation: none !important;
+    transform: none !important;
+    transition: none !important;
 }
 
 #about .card {
     animation: none !important;
+    transform: none !important;
+    transition: none !important;
+    opacity: 1 !important;
+}
+
+#about * {
+    animation: none !important;
+    transform: none !important;
 }
 
 #about .card-text {
@@ -339,16 +430,17 @@ section {
 
 .skill-category {
     margin-bottom: 1.5rem;
-    animation: fadeInUp 0.6s ease-out both;
+    animation: skillCategorySlide 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
+    transform-origin: left center;
 }
 
 .skill-category:nth-child(1) { animation-delay: 0.1s; }
-.skill-category:nth-child(2) { animation-delay: 0.2s; }
-.skill-category:nth-child(3) { animation-delay: 0.3s; }
-.skill-category:nth-child(4) { animation-delay: 0.4s; }
-.skill-category:nth-child(5) { animation-delay: 0.5s; }
-.skill-category:nth-child(6) { animation-delay: 0.6s; }
-.skill-category:nth-child(7) { animation-delay: 0.7s; }
+.skill-category:nth-child(2) { animation-delay: 0.25s; }
+.skill-category:nth-child(3) { animation-delay: 0.4s; }
+.skill-category:nth-child(4) { animation-delay: 0.55s; }
+.skill-category:nth-child(5) { animation-delay: 0.7s; }
+.skill-category:nth-child(6) { animation-delay: 0.85s; }
+.skill-category:nth-child(7) { animation-delay: 1s; }
 
 .skill-category-title {
     color: #1f2937;
@@ -368,14 +460,32 @@ section {
     padding: 0.6rem 1rem;
     border-radius: 25px;
     font-weight: var(--font-weight-medium);
-    transition: var(--transition-smooth);
+    transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
     background: var(--gradient-primary) !important;
     border: none;
+    position: relative;
+    overflow: hidden;
+    cursor: pointer;
+}
+
+.skill-tags .badge::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+    transition: all 0.5s ease;
 }
 
 .skill-tags .badge:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 4px 15px rgba(37, 99, 235, 0.3);
+    animation: badgeHover 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    box-shadow: 0 8px 25px rgba(37, 99, 235, 0.4);
+}
+
+.skill-tags .badge:hover::before {
+    left: 100%;
 }
 
 /* ==========================================
@@ -580,6 +690,113 @@ footer {
     to {
         opacity: 1;
         transform: translateX(0);
+    }
+}
+
+/* New Enhanced Animations */
+@keyframes heroIntroSlide {
+    0% {
+        opacity: 0;
+        transform: translateY(40px) scale(0.9);
+    }
+    60% {
+        opacity: 0.8;
+        transform: translateY(-5px) scale(1.02);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+@keyframes profilePictureEntrance {
+    0% {
+        opacity: 0;
+        transform: scale(0.3) rotate(-180deg);
+        border-radius: 20%;
+    }
+    50% {
+        opacity: 0.7;
+        transform: scale(1.1) rotate(-90deg);
+        border-radius: 60%;
+    }
+    100% {
+        opacity: 1;
+        transform: scale(1) rotate(0deg);
+        border-radius: 50%;
+    }
+}
+
+@keyframes profileTextSlide {
+    0% {
+        opacity: 0;
+        transform: translateX(50px) rotateY(45deg);
+    }
+    60% {
+        opacity: 0.8;
+        transform: translateX(-5px) rotateY(-5deg);
+    }
+    100% {
+        opacity: 1;
+        transform: translateX(0) rotateY(0deg);
+    }
+}
+
+@keyframes leadTextFade {
+    0% {
+        opacity: 0;
+        transform: translateY(20px);
+        letter-spacing: 5px;
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+        letter-spacing: normal;
+    }
+}
+
+@keyframes buttonGlow {
+    0% {
+        opacity: 0;
+        transform: translateY(30px) scale(0.8);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+@keyframes skillCategorySlide {
+    0% {
+        opacity: 0;
+        transform: translateX(-30px) scale(0.9);
+    }
+    100% {
+        opacity: 1;
+        transform: translateX(0) scale(1);
+    }
+}
+
+@keyframes cardFloatIn {
+    0% {
+        opacity: 0;
+        transform: translateY(50px) rotateX(10deg);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0) rotateX(0deg);
+    }
+}
+
+@keyframes badgeHover {
+    0% {
+        transform: translateY(0) scale(1);
+    }
+    50% {
+        transform: translateY(-8px) scale(1.05);
+    }
+    100% {
+        transform: translateY(-4px) scale(1.02);
     }
 }
 
