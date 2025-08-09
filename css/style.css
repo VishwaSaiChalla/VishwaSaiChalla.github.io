@@ -6,18 +6,18 @@
    CSS Variables & Root Styles
    ========================================== */
 :root {
-    --primary-color: #007bff;
-    --secondary-color: #6c757d;
-    --success-color: #28a745;
-    --warning-color: #ffc107;
-    --danger-color: #dc3545;
-    --dark-color: #343a40;
-    --light-color: #f8f9fa;
+    --primary-color: #2563eb;
+    --secondary-color: #64748b;
+    --success-color: #1d4ed8;
+    --warning-color: #3b82f6;
+    --danger-color: #1e40af;
+    --dark-color: #000000;
+    --light-color: #ffffff;
     
-    /* Custom Colors */
-    --gradient-primary: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-    --gradient-secondary: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
-    --gradient-dark: linear-gradient(135deg, #434343 0%, #000000 100%);
+    /* Custom Blue, White, Black Colors */
+    --gradient-primary: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%);
+    --gradient-secondary: linear-gradient(135deg, #3b82f6 0%, #1e40af 100%);
+    --gradient-dark: linear-gradient(135deg, #1f2937 0%, #000000 100%);
     
     /* Typography */
     --font-primary: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
@@ -55,7 +55,8 @@ body {
     font-family: var(--font-primary);
     font-weight: var(--font-weight-normal);
     line-height: 1.6;
-    color: #333;
+    color: #000000;
+    background-color: #ffffff;
     overflow-x: hidden;
 }
 
@@ -102,7 +103,7 @@ h1, h2, h3, h4, h5, h6 {
    ========================================== */
 .navbar {
     backdrop-filter: blur(10px);
-    background: rgba(52, 58, 64, 0.95) !important;
+    background: rgba(0, 0, 0, 0.95) !important;
     box-shadow: var(--shadow-light);
     transition: var(--transition-smooth);
     padding: 1rem 0;
@@ -127,7 +128,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .navbar-nav .nav-link:hover {
-    background: rgba(255, 255, 255, 0.1);
+    background: rgba(37, 99, 235, 0.2);
     transform: translateY(-2px);
 }
 
@@ -186,6 +187,44 @@ h1, h2, h3, h4, h5, h6 {
     animation: fadeInUp 1s ease-out 0.2s both;
 }
 
+/* Profile Picture Styling */
+.profile-intro {
+    animation: fadeInUp 1s ease-out 0.1s both;
+}
+
+.profile-picture-container {
+    position: relative;
+}
+
+.profile-picture {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 4px solid rgba(37, 99, 235, 0.8);
+    box-shadow: 0 8px 32px rgba(37, 99, 235, 0.3);
+    transition: var(--transition-smooth);
+    animation: fadeInLeft 1s ease-out 0.3s both;
+}
+
+.profile-picture:hover {
+    transform: scale(1.05);
+    border-color: #2563eb;
+    box-shadow: 0 12px 40px rgba(37, 99, 235, 0.4);
+}
+
+.profile-text {
+    animation: fadeInRight 1s ease-out 0.3s both;
+}
+
+.profile-text h1 {
+    margin-bottom: 0.5rem;
+}
+
+.profile-text .lead {
+    font-size: 1.3rem;
+}
+
 .skills-overview {
     animation: fadeInUp 1s ease-out 0.4s both;
 }
@@ -242,14 +281,14 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .btn-outline-light {
-    border: 2px solid rgba(255, 255, 255, 0.5);
+    border: 2px solid rgba(255, 255, 255, 0.8);
     color: #fff;
     background: transparent;
 }
 
 .btn-outline-light:hover {
-    background: rgba(255, 255, 255, 0.1);
-    border-color: #fff;
+    background: rgba(37, 99, 235, 0.2);
+    border-color: #2563eb;
     color: #fff;
     transform: translateY(-3px);
 }
@@ -258,12 +297,12 @@ h1, h2, h3, h4, h5, h6 {
    Cards
    ========================================== */
 .card {
-    border: none;
+    border: 1px solid rgba(37, 99, 235, 0.1);
     border-radius: var(--card-border-radius);
     box-shadow: var(--shadow-light);
     transition: var(--transition-smooth);
     overflow: hidden;
-    background: #fff;
+    background: #ffffff;
 }
 
 .card:hover {
@@ -283,7 +322,7 @@ section {
 }
 
 .bg-light {
-    background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%) !important;
+    background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%) !important;
 }
 
 /* ==========================================
@@ -292,7 +331,7 @@ section {
 #about .card-text {
     font-size: 1.1rem;
     line-height: 1.8;
-    color: #555;
+    color: #1f2937;
     margin-bottom: 1.5rem;
 }
 
@@ -316,20 +355,22 @@ section {
 .experience-item:hover,
 .education-item:hover,
 .certification-item:hover {
-    background: rgba(0, 123, 255, 0.02);
+    background: rgba(37, 99, 235, 0.05);
     padding-left: 1rem;
     border-radius: 8px;
 }
 
 .experience-categories {
-    background: rgba(0, 123, 255, 0.05);
+    background: rgba(37, 99, 235, 0.08);
+    border: 1px solid rgba(37, 99, 235, 0.15);
     padding: 1.5rem;
     border-radius: var(--card-border-radius);
     margin-top: 1rem;
 }
 
 .project-categories {
-    background: rgba(40, 167, 69, 0.05);
+    background: rgba(37, 99, 235, 0.08);
+    border: 1px solid rgba(37, 99, 235, 0.15);
     padding: 1.5rem;
     border-radius: var(--card-border-radius);
     margin-top: 1rem;
@@ -349,7 +390,7 @@ section {
 }
 
 .project-item:hover {
-    background: rgba(40, 167, 69, 0.02);
+    background: rgba(37, 99, 235, 0.05);
     padding-left: 1rem;
     border-radius: 8px;
 }
@@ -403,7 +444,7 @@ section {
 }
 
 .contact-item:hover {
-    background: rgba(255, 255, 255, 0.05);
+    background: rgba(37, 99, 235, 0.1);
     transform: translateX(10px);
 }
 
@@ -413,7 +454,7 @@ section {
 }
 
 .contact-item a:hover {
-    color: #007bff !important;
+    color: #2563eb !important;
 }
 
 /* ==========================================
@@ -437,7 +478,7 @@ footer {
 }
 
 .social-links a:hover {
-    background: var(--primary-color);
+    background: #2563eb;
     transform: translateY(-3px) scale(1.1);
 }
 
@@ -477,6 +518,28 @@ footer {
     }
 }
 
+@keyframes fadeInLeft {
+    from {
+        opacity: 0;
+        transform: translateX(-30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes fadeInRight {
+    from {
+        opacity: 0;
+        transform: translateX(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
 /* Scroll animations */
 .fade-in-up {
     opacity: 0;
@@ -499,6 +562,30 @@ footer {
     
     .hero-section .lead {
         font-size: 1.2rem;
+    }
+    
+    /* Mobile responsive for profile section */
+    .profile-intro {
+        flex-direction: column;
+        text-align: center;
+    }
+    
+    .profile-picture-container {
+        margin-bottom: 1.5rem;
+        margin-right: 0 !important;
+    }
+    
+    .profile-picture {
+        width: 100px;
+        height: 100px;
+    }
+    
+    .profile-text h1 {
+        font-size: 2.2rem;
+    }
+    
+    .profile-text .lead {
+        font-size: 1.1rem;
     }
     
     .section-title {
@@ -533,6 +620,20 @@ footer {
 @media (max-width: 576px) {
     .hero-section h1 {
         font-size: 2rem;
+    }
+    
+    .profile-picture {
+        width: 80px;
+        height: 80px;
+        border-width: 3px;
+    }
+    
+    .profile-text h1 {
+        font-size: 1.8rem;
+    }
+    
+    .profile-text .lead {
+        font-size: 1rem;
     }
     
     .skills-overview .col-md-6 {

@@ -45,10 +45,10 @@ document.addEventListener('DOMContentLoaded', function() {
     window.addEventListener('scroll', function() {
         const navbar = document.querySelector('.navbar');
         if (window.scrollY > 50) {
-            navbar.style.background = 'rgba(52, 58, 64, 0.98)';
-            navbar.style.boxShadow = '0 2px 20px rgba(0, 0, 0, 0.15)';
+            navbar.style.background = 'rgba(0, 0, 0, 0.98)';
+            navbar.style.boxShadow = '0 2px 20px rgba(37, 99, 235, 0.15)';
         } else {
-            navbar.style.background = 'rgba(52, 58, 64, 0.95)';
+            navbar.style.background = 'rgba(0, 0, 0, 0.95)';
             navbar.style.boxShadow = '0 2px 15px rgba(0, 0, 0, 0.08)';
         }
     });
